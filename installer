@@ -1,0 +1,33 @@
+#!/bin/bash
+#autor: root
+#Fecha: Mon Apr 17 16:12:38 MDT 2017
+#Comentario: Instalador del monitor
+rm krystal.conf
+clear
+echo "Cual correo deseas usar para enviar avisos?"
+read correo
+echo "Cual es la contrasena?"
+read correo_pass
+echo "A cual correo deseas enviar los avisos?"
+read correo_para
+salir="y"
+echo "ORDENADORES A MONITOREAR"
+while [ "$salir" = "y" ]; do
+	echo "Ingresa la direccion IP: "
+	read ip
+	echo "Ingresa el usuario: "
+	read usuario
+	echo "Ingresa la contrasena del usuario: "
+	read contrasena
+	echo "$ip,$usuario,$contrasena" >> krystal.conf
+	echo "Desea agregar otro ordenador? (y)es/(n)o"
+	read -n1 salir
+done
+echo $correo_para  >> krystal.conf
+cp mailconfig ~/.mailrc
+echo "set smtp-auth-user=$correo" >> ~/.mailrc
+echo "set smtp-auth-password=$correo_pass" >> ~/.mailrc
+echo "set from=$correo" >> ~/.mailrc
+
+echo "\nInstalacion finalizada :)"
+exit 0

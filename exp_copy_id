@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+lassign $argv ip pass 
+spawn ssh-copy-id $ip
+expect {
+	"password:" {
+		send -- "$pass\n"
+	}
+	"(yes/no)?" {
+		send "yes\n"
+		exp_continue
+	}
+}
+expect eof
+exit
