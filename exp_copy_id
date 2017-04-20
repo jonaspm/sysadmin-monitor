@@ -4,11 +4,11 @@ spawn ssh-copy-id $ip
 expect {
 	"password:" {
 		send -- "$pass\n"
+		expect eof
 	}
 	"(yes/no)?" {
 		send "yes\n"
 		exp_continue
 	}
 }
-expect eof
 exit
