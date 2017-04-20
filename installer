@@ -34,7 +34,7 @@ cp mailconfig ~/.mailrc
 echo "set smtp-auth-user=$correo" >> ~/.mailrc
 echo "set smtp-auth-password=$correo_pass" >> ~/.mailrc
 echo "set from=$correo" >> ~/.mailrc
-mkdir ./backup
+mkdir ~/backup
 echo ""
 echo "Instalacion finalizada :)"
 exit 0
