@@ -2,15 +2,20 @@
 #autor: root
 #Fecha: Mon Apr 17 16:12:38 MDT 2017
 #Comentario: Instalador del monitor
-rm krystal.conf
+
 clear
-echo "Cual correo deseas usar para enviar avisos?"
+echo "Cual correo deseas usar para enviar avisos? "
 read correo
-echo "Cual es la contrasena?"
+echo "Cual es la contrasena? "
 read correo_pass
-echo "A cual correo deseas enviar los avisos?"
+echo "A cual correo deseas enviar los avisos? "
 read correo_para
+echo "Para hacer los respaldos en Dropbox se necesita un Access Token"
+echo "Mas informacion: https://www.dropbox.com/developers/"
+echo "Ingresa el Token de Acceso: "
+read access_token
 salir="y"
+rm ./krystal.conf 2> /dev/null
 echo "ORDENADORES A MONITOREAR"
 while [ "$salir" = "y" ]; do
 	echo "Ingresa la direccion IP: "
@@ -19,15 +24,17 @@ while [ "$salir" = "y" ]; do
 	read usuario
 	echo "Ingresa la contrasena del usuario: "
 	read contrasena
-	echo "$ip,$usuario,$contrasena" >> krystal.conf
+	echo "$ip,$usuario,$contrasena" >> ./krystal.conf
 	echo "Desea agregar otro ordenador? (y)es/(n)o"
 	read -n1 salir
 done
-echo $correo_para  >> krystal.conf
+echo $correo_para  >> ./krystal.conf
+echo $access_token >> ./krystal.conf
 cp mailconfig ~/.mailrc
 echo "set smtp-auth-user=$correo" >> ~/.mailrc
 echo "set smtp-auth-password=$correo_pass" >> ~/.mailrc
 echo "set from=$correo" >> ~/.mailrc
-
-echo "\nInstalacion finalizada :)"
+mkdir ./backup
+echo ""
+echo "Instalacion finalizada :)"
 exit 0
