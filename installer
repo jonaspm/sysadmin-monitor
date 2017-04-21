@@ -42,7 +42,7 @@ cp mailconfig ~/.mailrc
 echo "set smtp-auth-user=$correo" >> ~/.mailrc
 echo "set smtp-auth-password=$correo_pass" >> ~/.mailrc
 echo "set from=$correo" >> ~/.mailrc
-mkdir ~/backup
+mkdir ~/$app_name
 cp ./krystal.sh $folder/krystal.sh && chmod +x $folder/krystal.sh
 cp ./exp_copy_id $folder/exp_copy_id && chmod +x $folder/exp_copy_id
 if [ -x $folder/krystal.sh ]; then
