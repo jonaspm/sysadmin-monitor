@@ -49,7 +49,7 @@ if [ -x $folder/krystal.sh ]; then
 crontab - << EOF
 $(crontab -l)
 # sysadmin-monitor
-*/$minutes * * * *  $folder/krystal.sh >> ~/$app_name.log
+*/$minutes * * * *  $folder/krystal.sh >> ~/$app_name/output.log
 # end sysadmin-monitor
 EOF
 fi
