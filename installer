@@ -19,6 +19,8 @@ echo "Para hacer los respaldos en Dropbox se necesita un Access Token"
 echo "Mas informacion: https://www.dropbox.com/developers/"
 echo "Ingresa el Token de Acceso: "
 read access_token
+echo "Cada cuantos minutos deseas ejecutar la tarea?"
+read minutes
 salir="y"
 mkdir $folder
 rm $folder/krystal.conf 2> /dev/null
@@ -47,7 +49,7 @@ if [ -x $folder/krystal.sh ]; then
 crontab - << EOF
 $(crontab -l)
 # sysadmin-monitor
-*/2 * * * *  $folder/krystal.sh >> ~/$app_name.log
+*/$minutes * * * *  $folder/krystal.sh >> ~/$app_name.log
 # end sysadmin-monitor
 EOF
 fi
